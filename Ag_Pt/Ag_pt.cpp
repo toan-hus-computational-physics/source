@@ -5,12 +5,7 @@
 #include <gsl/gsl_randist.h>
 #include "define.h"
 
-void site_position_setup();			//setup toa do cua cac nucleation site
-void add_an_atom(); 				//them 1 Ag vao mang
-void Brown();					//chuyen dong Brown cua atom tu do tren Pt
-void atom_catching(int idx, int site_idx);	//atom idx bi bat boi tam site_idx
-void catching_list(int idx);			//liet ke cac site co the bat atom idx
-void catching_process();			//qua trinh bat atom tren ca tam Pt
+double R=sqrt(D*dt);
 
 void site_position_setup() {
 	int i;

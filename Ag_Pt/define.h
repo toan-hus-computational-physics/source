@@ -1,3 +1,7 @@
+
+#ifndef __DEFINE_H
+#define __DEFINE_H
+
 #include <time.h>
 #define S 			1e9	//(nm) dien tich mo phong
 double  L=sqrt(S);			//(nm) kich thuoc mang
@@ -27,9 +31,18 @@ typedef struct {
 
 atom   free_atom[2*N_mean];	//mang luu tru cac atom tu do
 double nucl_site[nNuclSite][4]; 	//luu tru 2 toa do, ban kinh khoi bac tai Nucleation site va so atom bi bat
-double R=sqrt(D*dt);		//khoang cach bat cua tam
+extern double R;		//khoang cach bat cua tam
 double sigma=R/sqrt(2);		//P(x)=1/(sigma*sqrt(2*pi)).exp((-x^2)/(D.dt)) => 2*sigma^2=D*dt => sigma=sqrt(D*dt/2)
 int N=0;			//so hat tu do hien tai
 gsl_rng *rng=gsl_rng_alloc(gsl_rng_mt19937);
 unsigned long int Seed = time(NULL);
-  
+
+void site_position_setup();			//setup toa do cua cac nucleation site
+void add_an_atom(); 				//them 1 Ag vao mang
+void Brown();					//chuyen dong Brown cua atom tu do tren Pt
+void atom_catching(int idx, int site_idx);	//atom idx bi bat boi tam site_idx
+void catching_list(int idx);			//liet ke cac site co the bat atom idx
+void catching_process();			//qua trinh bat atom tren ca tam Pt
+
+
+#endif
